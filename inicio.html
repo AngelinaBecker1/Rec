@@ -8,13 +8,14 @@
 
     <style>
         header {
-            background: rgb(188, 244, 142);
+            background: rgb(213, 32, 32);
             padding: 15px 0;
             text-align: left;
             color: rgb(0, 0, 0);
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             margin-bottom: 30px;
             border-radius: 8px;
+            background-image: url(https://i.pinimg.com/1200x/18/2c/36/182c36820c8dde21c7c3e18017956077.jpg);
             
         }
         .tres-barrinhas {
@@ -40,7 +41,7 @@
             position: fixed;
             top: 0;
             right: 0;
-            background-color: rgb(188, 244, 142);
+            background-color: rgb(252, 72, 72);
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
@@ -55,7 +56,35 @@
             display: block;
             transition: 0.3s;
         }
-        
+
+        .logo_com_o_titulo{
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+        }
+
+        .logo_com_o_titulo h1 {
+            position: relative;
+            left: 50%;
+            z-index: 2;
+            font-size: 2.8rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: rgb(0, 0, 0);
+        }
+
+        .logo_com_o_titulo::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 20%;
+            transform: translate(-50%, -50%);
+            background-image: url('https://i.pinimg.com/1200x/94/b8/ae/94b8aea34e2cb7be4ae8a958bdf4b370.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 150px;
+            height: 150px;
+            z-index: 1;
+        }
 
 
     </style>
@@ -63,6 +92,9 @@
 
 <body>
     <header>
+            
+        </div>
+        <div class="logo_com_o_titulo">
             <h1>Viagens.com</h1>
         </div>
 
