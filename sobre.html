@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Viagens.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --vermelho-claro: #ef4141;
+            --vermelho-medio: #ce2d2d;
+            --vermelho-escuro: #9a1414;
+            --branco: #fff;
+            --preto: #333;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #fff9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: var(--branco);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 80px;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: var(--preto);
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #f8e1e7;
+            position: relative;
+        }
+
+        .menu a:hover {
+            background-color: #fff0f5;
+            color: var(--vermelho-escuro);
+        }
+
+        .tres-barrinhas {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .tres-barrinhas .bar {
+            width: 30px;
+            height: 4px;
+            background-color: var(--branco);
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+
+        .tres-barrinhas:hover .bar {
+            background-color: #fff0f5;
+        }
+
+        .logo_com_o_titulo h1 {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-size: 3rem;
+            color: var(--branco);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo_com_o_titulo h1::before,
+        .logo_com_o_titulo h1::after {
+            content: '🎀';
+            margin: 0 15px;
+            font-size: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--vermelho-medio), var(--vermelho-claro));
+            padding: 15px 0;
+            text-align: left;
+            color: var(--branco);
+            margin-bottom: 30px;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sobre {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sobre h2 {
+            text-align: center;
+            color: var(--preto);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sobre h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--vermelho-claro), var(--vermelho-medio), var(--vermelho-claro));
+            border-radius: 2px;
+        }
+
+        .sobre-nos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .sobre-texto h3 {
+            color: var(--vermelho-escuro);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .sobre-texto p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .sobre-imagem {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .sobre-imagem img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .sobre-imagem:hover img {
+            transform: scale(1.05);
+        }
+
+        .missao-valores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .missao-card,
+        .valores-card {
+            background: var(--branco);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .missao-card:hover,
+        .valores-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .missao-card h3,
+        .valores-card h3 {
+            color: var(--vermelho-escuro);
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .missao-card h3::after,
+        .valores-card h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--vermelho-medio);
+        }
+
+        .valores-lista {
+            list-style: none;
+            padding: 0;
+        }
+
+        .valores-lista li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+        }
+
+        .valores-lista li::before {
+            content: '✈️';
+            position: absolute;
+            left: 0;
+        }
+
+        .equipe h3 {
+            text-align: center;
+            color: var(--vermelho-escuro);
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .equipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .membro-equipe {
+            background: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .membro-equipe:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .membro-equipe img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--vermelho-claro);
+        }
+
+        .membro-info {
+            padding: 20px;
+        }
+
+        .membro-info h4 {
+            margin: 0 0 5px;
+            color: var(--preto);
+            font-size: 1.3rem;
+        }
+
+        .membro-info p {
+            margin: 0 0 15px;
+            color: var(--vermelho-medio);
+            font-weight: bold;
+        }
+
+        .membro-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .membro-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: #f0f0f0;
+            color: var(--vermelho-medio);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .membro-social a:hover {
+            background: var(--vermelho-medio);
+            color: var(--branco);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .sobre-nos {
+                grid-template-columns: 1fr;
+            }
+
+            .sobre-imagem {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo_com_o_titulo">
+            <h1>Viagens.com</h1>
+        </div>
+
+        <div class="menu" id="menu">
+            <a href="javascript:void(0)" onclick="closemenu()">&times; Fechar</a>
+            <a href="inicio.html">Início</a>
+            <a href="fotos.html">Fotos</a>
+            <a href="destinos.html">Destinos</a>
+            <a href="promocoes.html">Promoções</a>
+            <a href="contato.html">Contato</a>
+            <a href="depoimentos.html">Depoimentos</a>
+            <a href="blog.html">Blog</a>
+            <a href="sobre.html">Sobre Nós</a>
+        </div>
+        <button class="tres-barrinhas" onclick="openmenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    </header>
+
+    <main>
+        <section class="sobre">
+            <h2>Sobre Nós</h2>
+
+            <div class="sobre-nos">
+                <div class="sobre-texto">
+                    <h3>Nossa História</h3>
+                    <p>Fundada em 2011, a Viagens.com nasceu da paixão de nossos fundadores por explorar o mundo e
+                        compartilhar experiências inesquecíveis. Começamos como uma pequena agência local e hoje somos
+                        referência em turismo nacional e internacional.</p>
+                    <p>Nosso objetivo sempre foi o mesmo: transformar sonhos em realidade, oferecendo aos nossos
+                        clientes as melhores experiências de viagem com conforto, segurança e preços justos.</p>
+                    <p>Ao longo dos anos, já levamos mais de 50 mil clientes para conhecer destinos incríveis em todos
+                        os continentes, sempre com a qualidade e atenção que nos tornaram reconhecidos no mercado.</p>
+                </div>
+                <div class="sobre-imagem">
+                    <img src="https://i.ibb.co/0jX7Z1H/tokyo.jpg" alt="Nossa Equipe">
+                </div>
+            </div>
+
+            <div class="missao-valores">
+                <div class="missao-card">
+                    <h3>Nossa Missão</h3>
+                    <p>Proporcionar experiências de viagem memoráveis, superando expectativas através de serviços
+                        personalizados, atendimento excepcional e parcerias com os melhores fornecedores do mercado.</p>
+                    <p>Queremos ser a ponte que conecta pessoas a culturas, paisagens e histórias ao redor do mundo,
+                        enriquecendo vidas através do turismo responsável e significativo.</p>
+                </div>
+
+                <div class="valores-card">
+                    <h3>Nossos Valores</h3>
+                    <ul class="valores-lista">
+                        <li><strong>Paixão por Viajar:</strong> Acreditamos que viajar transforma vidas</li>
+                        <li><strong>Integridade:</strong> Agimos com ética e transparência</li>
+                        <li><strong>Excelência:</strong> Buscamos a perfeição em cada detalhe</li>
+                        <li><strong>Inovação:</strong> Estamos sempre evoluindo</li>
+                        <li><strong>Sustentabilidade:</strong> Promovemos o turismo responsável</li>
+                        <li><strong>Sorrisos:</strong> Acreditamos que viagens devem ser alegres</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        
+    </footer>
+
+    <script>
+        function openmenu() {
+            document.getElementById("menu").style.width = "280px";
+            document.querySelector(".tres-barrinhas").style.opacity = "0";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closemenu() {
+            document.getElementById("menu").style.width = "0";
+            document.querySelector(".tres-barrinhas").style.opacity = "1";
+            document.body.style.overflow = "auto";
+        }
+
+        document.addEventListener('click', function (event) {
+            const menu = document.getElementById('menu');
+            const btn = document.querySelector('.tres-barrinhas');
+
+            if (!menu.contains(event.target) && event.target !== btn && !btn.contains(event.target)) {
+                closemenu();
+            }
+        });
+    </script>
+</body>
+
+</html>
