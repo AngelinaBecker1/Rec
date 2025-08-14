@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Viagens.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --vermelho-claro: #ef4141;
+            --vermelho-medio: #ce2d2d;
+            --vermelho-escuro: #9a1414;
+            --branco: #fff;
+            --preto: #333;
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #fff9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: var(--branco);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 80px;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: var(--preto);
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #f8e1e7;
+            position: relative;
+        }
+
+        .menu a:hover {
+            background-color: #fff0f5;
+            color: var(--vermelho-escuro);
+        }
+        
+        .tres-barrinhas {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .tres-barrinhas .bar {
+            width: 30px;
+            height: 4px;
+            background-color: var(--branco);
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+
+        .tres-barrinhas:hover .bar {
+            background-color: #fff0f5;
+        }
+        
+        .logo_com_o_titulo h1 {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-size: 3rem;
+            color: var(--branco);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo_com_o_titulo h1::before,
+        .logo_com_o_titulo h1::after {
+            content: '🎀';
+            margin: 0 15px;
+            font-size: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--vermelho-medio), var(--vermelho-claro));
+            padding: 15px 0;
+            text-align: left;
+            color: var(--branco);
+            margin-bottom: 30px;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog h2 {
+            text-align: center;
+            color: var(--preto);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .blog h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--vermelho-claro), var(--vermelho-medio), var(--vermelho-claro));
+            border-radius: 2px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--vermelho-claro);
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-categoria {
+            display: inline-block;
+            background: var(--vermelho-claro);
+            color: var(--branco);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .blog-content h3 {
+            margin: 0 0 15px;
+            color: var(--preto);
+            font-size: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .blog-meta i {
+            margin-right: 5px;
+            color: var(--vermelho-medio);
+        }
+
+        .blog-meta span {
+            margin-right: 15px;
+        }
+
+        .blog-resumo {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn-lermais {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--vermelho-claro);
+            color: var(--branco);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-lermais:hover {
+            background: var(--vermelho-medio);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(219, 112, 147, 0.4);
+        }
+
+        .blog-destaque {
+            grid-column: span 2;
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .blog-destaque .blog-card {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .blog-destaque img {
+            width: 50%;
+            height: auto;
+        }
+
+        .blog-destaque .blog-content {
+            width: 50%;
+        }
+
+        .categorias-sidebar {
+            background: var(--branco);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .categorias-sidebar h3 {
+            color: var(--vermelho-escuro);
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .categorias-lista {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categorias-lista li {
+            margin-bottom: 10px;
+        }
+
+        .categorias-lista a {
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 5px;
+        }
+
+        .categorias-lista a:hover {
+            background: #fff0f5;
+            color: var(--vermelho-medio);
+            padding-left: 15px;
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+
+        .paginacao a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--branco);
+            color: var(--preto);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .paginacao a:hover, .paginacao a.ativa {
+            background: var(--vermelho-claro);
+            color: var(--branco);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .blog-destaque {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+            
+            .blog-destaque .blog-card {
+                flex-direction: column;
+            }
+            
+            .blog-destaque img,
+            .blog-destaque .blog-content {
+                width: 100%;
+            }
+            
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo_com_o_titulo">
+            <h1>Viagens.com</h1>
+        </div>
+
+        <div class="menu" id="menu">
+            <a href="javascript:void(0)" onclick="closemenu()">&times; Fechar</a>
+            <a href="inicio.html">Início</a>
+            <a href="fotos.html">Fotos</a>
+            <a href="destinos.html">Destinos</a>
+            <a href="promocoes.html">Promoções</a>
+            <a href="contato.html">Contato</a>
+            <a href="depoimentos.html">Depoimentos</a>
+            <a href="blog.html">Blog</a>
+            <a href="sobre.html">Sobre Nós</a>
+        </div>
+        <button class="tres-barrinhas" onclick="openmenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    </header>
+
+    <main>
+        <section class="blog">
+            <h2>Blog de Viagens</h2>
+            
+            <div class="blog-container">
+                <div class="blog-main">
+                    <div class="blog-grid">
+                        <div class="blog-destaque">
+                            <div class="blog-card">
+                                <img src="https://i.ibb.co/0jX7Z1H/tokyo.jpg" alt="Guia Japão">
+                                <div class="blog-content">
+                                    <span class="blog-categoria">Ásia</span>
+                                    <h3>Guia Completo para sua Primeira Viagem ao Japão</h3>
+                                    <div class="blog-meta">
+                                        <span><i class="far fa-calendar-alt"></i> 15/08/2025</span>
+                                        <span><i class="far fa-user"></i> Por Ana Takahashi</span>
+                                    </div>
+                                    <p class="blog-resumo">Descubra tudo o que você precisa saber para planejar sua primeira viagem ao Japão, desde os melhores períodos para visitar até dicas de etiqueta local e como se locomover entre as cidades.</p>
+                                    <a href="#" class="btn-lermais">Ler Mais</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <img src="https://i.ibb.co/Ps8fw84W/Paris.jpg" alt="Paris Romântica">
+                            <div class="blog-content">
+                                <span class="blog-categoria">Europa</span>
+                                <h3>Roteiro Romântico de 5 Dias em Paris</h3>
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> 10/08/2025</span>
+                                    <span><i class="far fa-user"></i> Por Pierre Dubois</span>
+                                </div>
+                                <p class="blog-resumo">Um roteiro perfeito para casais que desejam viver o romance parisiense, incluindo jantares à luz de velas, passeios secretos e os melhores spots para fotos.</p>
+                                <a href="#" class="btn-lermais">Ler Mais</a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <img src="https://i.ibb.co/LzHGKPBm/Orlando.jpg" alt="Orlando com Crianças">
+                            <div class="blog-content">
+                                <span class="blog-categoria">América</span>
+                                <h3>Dicas Imperdíveis para Orlando com Crianças</h3>
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> 05/08/2025</span>
+                                    <span><i class="far fa-user"></i> Por Carlos Silva</span>
+                                </div>
+                                <p class="blog-resumo">Como aproveitar ao máximo os parques temáticos de Orlando com crianças pequenas, incluindo dicas de hospedagem, restaurantes e estratégias para evitar filas.</p>
+                                <a href="#" class="btn-lermais">Ler Mais</a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <img src="https://i.ibb.co/Wp5yH9xq/Cancun.jpg" alt="Cancún Econômico">
+                            <div class="blog-content">
+                                <span class="blog-categoria">América</span>
+                                <h3>Como Viajar para Cancún Gastando Pouco</h3>
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> 01/08/2025</span>
+                                    <span><i class="far fa-user"></i> Por Maria Fernandez</span>
+                                </div>
+                                <p class="blog-resumo">Dicas valiosas para curtir as praias paradisíacas de Cancún sem gastar uma fortuna, incluindo melhores épocas, hospedagens econômicas e passeios gratuitos.</p>
+                                <a href="#" class="btn-lermais">Ler Mais</a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <img src="https://i.ibb.co/XZdnFzj5/Coreia-do-sul.jpg" alt="Coreia do Sul">
+                            <div class="blog-content">
+                                <span class="blog-categoria">Ásia</span>
+                                <h3>Roteiro de 10 Dias pela Coreia do Sul</h3>
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> 25/07/2025</span>
+                                    <span><i class="far fa-user"></i> Por Kim Ji-hoon</span>
+                                </div>
+                                <p class="blog-resumo">Explore Seul, Busan e a ilha de Jeju neste roteiro completo que combina tradição e modernidade, incluindo dicas de alimentação para vegetarianos.</p>
+                                <a href="#" class="btn-lermais">Ler Mais</a>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <img src="https://i.ibb.co/b55Xxqgs/Rio.jpg" alt="Rio de Janeiro">
+                            <div class="blog-content">
+                                <span class="blog-categoria">Brasil</span>
+                                <h3>O Que Fazer no Rio de Janeiro em 3 Dias</h3>
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt"></i> 20/07/2025</span>
+                                    <span><i class="far fa-user"></i> Por João Costa</span>
+                                </div>
+                                <p class="blog-resumo">Um roteiro intenso para quem tem pouco tempo na Cidade Maravilhosa, incluindo praias, pontos turísticos imperdíveis e onde comer a melhor feijoada.</p>
+                                <a href="#" class="btn-lermais">Ler Mais</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="paginacao">
+                        <a href="#">&laquo;</a>
+                        <a href="#" class="ativa">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+                </div>
+                
+                <div class="blog-sidebar">
+                    <div class="categorias-sidebar">
+                        <h3>Categorias</h3>
+                        <ul class="categorias-lista">
+                            <li><a href="#">Ásia <span>(12)</span></a></li>
+                            <li><a href="#">Europa <span>(8)</span></a></li>
+                            <li><a href="#">América do Norte <span>(15)</span></a></li>
+                            <li><a href="#">América do Sul <span>(7)</span></a></li>
+                            <li><a href="#">África <span>(5)</span></a></li>
+                            <li><a href="#">Oceania <span>(3)</span></a></li>
+                            <li><a href="#">Dicas Gerais <span>(10)</span></a></li>
+                            <li><a href="#">Gastronomia <span>(6)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="categorias-sidebar">
+                        <h3>Posts Populares</h3>
+                        <ul class="categorias-lista">
+                            <li><a href="#">10 Destinos Baratos para Viajar em 2025</a></li>
+                            <li><a href="#">O Que Colocar na Mala para uma Viagem Internacional</a></li>
+                            <li><a href="#">Como Economizar em Passagens Aéreas</a></li>
+                            <li><a href="#">Os Melhores Destinos para Lua de Mel</a></li>
+                            <li><a href="#">Seguro Viagem: Vale a Pena?</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        
+    </footer>
+    
+    <script>
+        function openmenu() {
+            document.getElementById("menu").style.width = "280px";
+            document.querySelector(".tres-barrinhas").style.opacity = "0";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closemenu() {
+            document.getElementById("menu").style.width = "0";
+            document.querySelector(".tres-barrinhas").style.opacity = "1";
+            document.body.style.overflow = "auto";
+        }
+
+        document.addEventListener('click', function (event) {
+            const menu = document.getElementById('menu');
+            const btn = document.querySelector('.tres-barrinhas');
+
+            if (!menu.contains(event.target) && event.target !== btn && !btn.contains(event.target)) {
+                closemenu();
+            }
+        });
+    </script>
+</body>
+</html>
