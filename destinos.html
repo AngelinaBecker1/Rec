@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos - Viagens.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+            :root {
+            --vermelho-claro: #ef4141;
+            --vermelho-medio: #ce2d2d;
+            --vermelho-escuro: #9a1414;
+            --branco: #fff;
+            --preto: #333;
+            }
+            .menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: var(--branco);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 80px;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: var(--preto);
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #f8e1e7;
+            position: relative;
+        }
+
+        .menu a:hover {
+            background-color: #fff0f5;
+            color: var(--vermelho-escuro);
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #fff9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .tres-barrinhas {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 1001;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .tres-barrinhas .bar {
+            width: 30px;
+            height: 4px;
+            background-color: var(--branco);
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+
+        .tres-barrinhas:hover .bar {
+            background-color: #fff0f5;
+        }
+        .logo_com_o_titulo h1 {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            font-size: 3rem;
+            color: var(--branco);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo_com_o_titulo h1::before,
+        .logo_com_o_titulo h1::after {
+            content: '🎀';
+            margin: 0 15px;
+            font-size: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--vermelho-medio), var(--vermelho-claro));
+            padding: 15px 0;
+            text-align: left;
+            color: var(--branco);
+            margin-bottom: 30px;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .destinos {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .destinos h2 {
+            text-align: center;
+            color: var(--preto);
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .destinos h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--vermelho-claro), var(--vermelho-medio), var(--vermelho-claro));
+            border-radius: 2px;
+        }
+
+        .continentes {
+            margin-bottom: 40px;
+        }
+
+        .continente-titulo {
+            display: flex;
+            align-items: center;
+            margin: 30px 0 20px;
+            color: var(--vermelho-escuro);
+            font-size: 1.8rem;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .continente-titulo::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .asia .continente-titulo::before {
+            background-image: url('https://i.ibb.co/0jX7Z1H/tokyo.jpg');
+            border-radius: 50%;
+        }
+
+        .europa .continente-titulo::before {
+            background-image: url('https://i.ibb.co/Ps8fw84W/Paris.jpg');
+            border-radius: 50%;
+        }
+
+        .america .continente-titulo::before {
+            background-image: url('https://i.ibb.co/b55Xxqgs/Rio.jpg');
+            border-radius: 50%;
+        }
+
+        .destinos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .destino-item {
+            background: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .destino-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .destino-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--vermelho-claro);
+        }
+
+        .destino-info {
+            padding: 20px;
+        }
+
+        .destino-info h3 {
+            margin: 0 0 10px;
+            color: var(--preto);
+            font-size: 1.4rem;
+        }
+
+        .destino-info p {
+            margin: 0 0 15px;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .destaque{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--vermelho-medio);
+            color: var(--branco);
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .btn-detalhes {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--vermelho-claro);
+            color: var(--branco);
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-detalhes:hover {
+            background: var(--vermelho-medio);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(219, 112, 147, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo_com_o_titulo">
+            <h1>Viagens.com</h1>
+        </div>
+
+        <div class="menu" id="menu">
+            <a href="javascript:void(0)" onclick="closemenu()">&times; Fechar</a>
+            <a href="inicio.html">Início</a>
+            <a href="fotos.html">Fotos</a>
+            <a href="destinos.html">Destinos</a>
+            <a href="promocoes.html">Promoções</a>
+            <a href="contato.html">Contato</a>
+        </div>
+        <button class="tres-barrinhas" onclick="openmenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    </header>
+
+    <main>
+        <section class="destinos">
+            <h2>Nossos Destinos</h2>
+            
+            <div class="continentes asia">
+                <h3 class="continente-titulo">Ásia</h3>
+                <div class="destinos-grid">
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/0jX7Z1H/tokyo.jpg" alt="Tóquio">
+                        <div class="destino-info">
+                            <h3>Tóquio</h3>
+                            <p>A capital do Japão, cheia de cultura e tecnologia.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-item">
+                        <span class="destaque"></span>
+                        <img src="https://i.ibb.co/7YpXvz3/sanrio-puroland.jpg" alt="Sanrio Puroland">
+                        <div class="destino-info">
+                            <h3>California</h3>
+                            <p>California</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/0qJX3yG/kyoto.jpg" alt="Kyoto">
+                        <div class="destino-info">
+                            <h3>Kyoto</h3>
+                            <p>Templos tradicionais e paisagens deslumbrantes.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continentes europa">
+                <h3 class="continente-titulo">Europa</h3>
+                <div class="destinos-grid">
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/Ps8fw84W/Paris.jpg" alt="Paris">
+                        <div class="destino-info">
+                            <h3>Paris</h3>
+                            <p>A cidade do amor e da Torre Eiffel.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/0mY7WqZ/londres.jpg" alt="Londres">
+                        <div class="destino-info">
+                            <h3>Londres</h3>
+                            <p>História, cultura e o Big Ben.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/0VJQ0XH/roma.jpg" alt="Roma">
+                        <div class="destino-info">
+                            <h3>Roma</h3>
+                            <p>Cidade eterna com história milenar.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="continentes america">
+                <h3 class="continente-titulo">América</h3>
+                <div class="destinos-grid">
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/b55Xxqgs/Rio.jpg" alt="Rio de Janeiro">
+                        <div class="destino-info">
+                            <h3>Rio de Janeiro</h3>
+                            <p>Cristo Redentor e praias deslumbrantes.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/LzHGKPBm/Orlando.jpg" alt="Orlando">
+                        <div class="destino-info">
+                            <h3>Orlando</h3>
+                            <p>Capital mundial dos parques temáticos.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-item">
+                        <img src="https://i.ibb.co/Wp5yH9xq/Cancun.jpg" alt="Cancún">
+                        <div class="destino-info">
+                            <h3>Cancún</h3>
+                            <p>Praias paradisíacas no México.</p>
+                            <a href="#" class="btn-detalhes">Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <!-- Footer igual ao inicio.html -->
+    </footer>
+    
+    <div class="hello-kitty-icon" onclick="alert('Vamos explorar o mundo juntos!')">
+        ✈️
+    </div>
+    
+    <script>
+        // Funções do menu (iguais ao inicio.html)
+        function openmenu() {
+            document.getElementById("menu").style.width = "280px";
+            document.querySelector(".tres-barrinhas").style.opacity = "0";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closemenu() {
+            document.getElementById("menu").style.width = "0";
+            document.querySelector(".tres-barrinhas").style.opacity = "1";
+            document.body.style.overflow = "auto";
+        }
+
+        document.addEventListener('click', function (event) {
+            const menu = document.getElementById('menu');
+            const btn = document.querySelector('.tres-barrinhas');
+
+            if (!menu.contains(event.target) && event.target !== btn && !btn.contains(event.target)) {
+                closemenu();
+            }
+        });
+                
+        
+    </script>
+</body>
+</html>
