@@ -16,7 +16,7 @@
             --branco: #fff;
             --preto: #333;
         }
-        
+
         body {
             font-family: 'Comic Neue', cursive;
             background-color: #fff9f9;
@@ -357,75 +357,6 @@
             box-shadow: 0 5px 15px rgba(219, 112, 147, 0.4);
         }
 
-        footer {
-            background: linear-gradient(135deg, var(--vermelho-escuro), var(--vermelho-medio));
-            color: var(--branco);
-            padding: 50px 0 0;
-            margin-top: 70px;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            padding: 0 30px;
-        }
-
-        .footer-col h3 {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 50px;
-            height: 3px;
-            background: var(--branco);
-            border-radius: 2px;
-        }
-
-        .footer-col p, 
-        .footer-col ul li {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 15px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .footer-col ul li::before {
-            content: '🌸';
-            position: absolute;
-            left: 0;
-        }
-
-        .footer-col ul li a {
-            color: var(--branco);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .footer-col ul li a:hover {
-            color: #fff0f5;
-            padding-left: 5px;
-        }
-
         .social-icons {
             display: flex;
             gap: 20px;
@@ -451,40 +382,28 @@
             transform: translateY(-5px);
         }
 
-        .footer-bottom {
-            text-align: center;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-            font-size: 1.1rem;
-        }
-
 
         @media (max-width: 768px) {
             .logo_com_o_titulo h1 {
                 font-size: 2rem;
             }
-            
+
             .logo_com_o_titulo h1::before,
             .logo_com_o_titulo h1::after {
                 font-size: 1.5rem;
                 margin: 0 10px;
             }
-            
+
             .destaques h2,
             .promocoes h2 {
                 font-size: 2rem;
             }
-            
+
             .destino-card,
             .promocao-card {
                 min-width: 280px;
             }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
+
         }
     </style>
 </head>
@@ -536,7 +455,7 @@
                         <button class="btn-saiba-mais">Saiba mais</button>
                     </div>
                     <div class="destino-card">
-                        <img src="https://i.ibb.co/0jX7Z1H/tokyo.jpg" alt="Tóquio">
+                        <img src="https://i.ibb.co/2YMGyGJf/Tokyo.jpg" alt="Tóquio">
                         <h3>Tóquio</h3>
                         <p>Pacote 10 noites a partir de R$ 6.499</p>
                         <button class="btn-saiba-mais">Saiba mais</button>
@@ -576,7 +495,7 @@
                 </div>
                 <div class="promocao-card">
                     <span class="promocao-tag">-25%</span>
-                    <img src="" alt="">
+                    <img src="https://i.ibb.co/cM7wQPV/Calofornia-girls-are-tatatat.jpg" alt="Calofornia girls are tatatat">
                     <div class="promocao-info">
                         <h3>California</h3>
                         <p class="promocao-preco-antigo">R$ 4.499</p>
@@ -587,45 +506,46 @@
                 </div>
             </div>
         </section>
-    </footer>
+        </footer>
 
 
-    <script>
-        function openmenu() {
-            document.getElementById("menu").style.width = "280px";
-            document.querySelector(".tres-barrinhas").style.opacity = "0";
-            document.body.style.overflow = "hidden";
-        }
-
-        function closemenu() {
-            document.getElementById("menu").style.width = "0";
-            document.querySelector(".tres-barrinhas").style.opacity = "1";
-            document.body.style.overflow = "auto";
-        }
-
-        document.addEventListener('click', function (event) {
-            const menu = document.getElementById('menu');
-            const btn = document.querySelector('.tres-barrinhas');
-
-            if (!menu.contains(event.target) && event.target !== btn && !btn.contains(event.target)) {
-                closemenu();
+        <script>
+            function openmenu() {
+                document.getElementById("menu").style.width = "280px";
+                document.querySelector(".tres-barrinhas").style.opacity = "0";
+                document.body.style.overflow = "hidden";
             }
-        });
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const carrossel = document.querySelector('.carrossel');
-            const btnAnterior = document.querySelector('.carrossel-anterior');
-            const btnProximo = document.querySelector('.carrossel-proximo');
+            function closemenu() {
+                document.getElementById("menu").style.width = "0";
+                document.querySelector(".tres-barrinhas").style.opacity = "1";
+                document.body.style.overflow = "auto";
+            }
 
-            btnProximo.addEventListener('click', function () {
-                carrossel.scrollBy({ left: 320, behavior: 'smooth' });
+            document.addEventListener('click', function (event) {
+                const menu = document.getElementById('menu');
+                const btn = document.querySelector('.tres-barrinhas');
+
+                if (!menu.contains(event.target) && event.target !== btn && !btn.contains(event.target)) {
+                    closemenu();
+                }
             });
 
-            btnAnterior.addEventListener('click', function () {
-                carrossel.scrollBy({ left: -320, behavior: 'smooth' });
-            });
+            document.addEventListener('DOMContentLoaded', function () {
+                const carrossel = document.querySelector('.carrossel');
+                const btnAnterior = document.querySelector('.carrossel-anterior');
+                const btnProximo = document.querySelector('.carrossel-proximo');
+
+                btnProximo.addEventListener('click', function () {
+                    carrossel.scrollBy({ left: 320, behavior: 'smooth' });
+                });
+
+                btnAnterior.addEventListener('click', function () {
+                    carrossel.scrollBy({ left: -320, behavior: 'smooth' });
+                });
             }
-        );
-    </script>
+            );
+        </script>
 </body>
+
 </html>
